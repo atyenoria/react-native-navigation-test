@@ -48,6 +48,18 @@ class FirstLoad extends Component {
 	  });
 	}
 
+
+  async _getMoviesFromApi (a) {
+    console.log(a)
+    try {
+      let response = await fetch('https://facebook.github.io/react-native/movies.json');
+      let responseJson = await response.json();
+      console.log(responseJson)
+      return responseJson.movies;
+    } catch(error) {
+      console.error(error);
+    }
+  }
   /**
     * RENDER
     */
@@ -65,7 +77,7 @@ class FirstLoad extends Component {
           	<View style={[AppStyles.flex1, AppStyles.paddingRightSml]}>
 		          <Button
 		            text={'Sign In/Up Now'}
-		            onPress={()=>this._navigate()} />
+		            onPress={()=>this._getMoviesFromApi("a")} />
             </View>
 
             <View style={[AppStyles.flex1, AppStyles.paddingLeftSml]}>
