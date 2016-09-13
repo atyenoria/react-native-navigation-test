@@ -5,8 +5,8 @@ import CookieManager from 'react-native-cookies';
 import LoggedIn from './LoggedIn'
 
 // Change these to reflect
-const LOGIN_URL = "http://localhost:3000/login/";
-const HOME_URL = "http://localhost:3000/";
+const LOGIN_URL = "http://localhost:4000/login/";
+const HOME_URL = "http://localhost:4000/";
 
 var styles = StyleSheet.create({
   container: {
@@ -26,6 +26,7 @@ export default class ReactNativeLogin extends Component {
 
   componentWillMount () {
     CookieManager.get(HOME_URL, (cookie) => {
+      console.log(cookie)
       let isAuthenticated;
       // If it differs, change `cookie.remember_me` to whatever the name for your persistent cookie is!!!
       if (cookie && cookie.indexOf('remember_me') != -1) {

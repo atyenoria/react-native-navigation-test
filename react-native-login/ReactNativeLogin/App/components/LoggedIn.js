@@ -18,14 +18,28 @@ export default class LoggedIn extends Component {
       console.log(err);
       console.log(res);
     });
-    
+
     this.setState({
       loggedIn: false,
     });
   }
 
+
+  async _getMoviesFromApi (a) {
+    console.log(a)
+    try {
+      let response = await fetch('http://localhost:4000/');
+      let responseJson = await response.json();
+      console.log(responseJson)
+      return responseJson.movies;
+    } catch(error) {
+      console.error(error);
+    }
+  }
+
   render () {
     if (this.state.loggedIn) {
+      this._getMoviesFromApi("a")
      return (
        <View style={styles.container}>
          <Text style={styles.welcome}>
@@ -33,14 +47,14 @@ export default class LoggedIn extends Component {
          </Text>
          <Button style={{color: 'black'}} onPress={this.logout.bind(this)}>Logout</Button>
        </View>
-     ); 
+     );
     }
     else {
       return (
         <ReactNativeLogin/>
       );
     }
-    
+
   }
 }
 
